@@ -1,0 +1,92 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block title %}Log Reader{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/changelists.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "log_reader/css/log_reader.css" %}">
+    <script src="{% static "log_reader/js/log_reader.js" %}" type="application/javascript"></script>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a> &rsaquo;
+        <a href="{% url 'admin:app_list' 'log_reader' %}">{% trans 'Log Reader' %}</a> &rsaquo;
+        {% trans 'File Logs' %}
+    </div>
+{% endblock %}
+
+{% block pretitle %}
+    <h1>File Logs</h1>
+{% endblock %}
+
+{% block content %}
+    <div id="content-main">
+        <div class="module filtered" id="changelist">
+            <div class="changelist-form-container">
+                {% if file_contents %}
+                    <div id="toolbar">
+                        <button id="DownloadLogFile" type="submit">Download</button>
+                    </div>
+                {% endif %}
+
+                {% if file_contents %}
+                    <div class="results">
+                        <table id="result_list">
+                            <thead>
+                            <tr>
+                                <th scope="col" class="action-checkbox-column">
+                                    <div class="text">#</div>
+                                </th>
+                                <th scope="col" class="column-username">
+                                    <div class="text"><a>content</a></div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for content in file_contents %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td class="file_content">{{ content }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+
+                <p class="paginator">{{ file_contents|length }} log content</p>
+            </div>
+
+            {% block filters %}
+                {{ block.super }}
+                <div id="changelist-filter">
+                    <h2>{% trans 'Filter' %}</h2>
+                    <h3>By File</h3>
+                    <ul>
+                        {% for file_name in log_files %}
+                            <li><a href="?file_name={{ file_name }}">{{ file_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("DownloadLogFile").addEventListener("click", function () {
+            // Generate download of hello.txt file with some content
+            var contents = document.querySelectorAll('td.file_content');
+            var file_content = "";
+            contents.forEach(function (content) {
+                file_content += content.textContent;
+                file_content += "\n\n============================================================================\n\n";
+            })
+            var filename = "{{ request.GET.file_name|default:'django.log' }}";
+            download(filename, file_content);
+        }, false);
+    </script>
+{% endblock %}
