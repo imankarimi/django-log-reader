@@ -26,16 +26,18 @@
 {% block content %}
     <div id="content-main">
         <div class="module filtered" id="changelist">
-            {% if django_version >= '3' %}<div class="changelist-form-container">{% endif %}
-                {% if file_contents %}
-                    <div id="toolbar">
-                        <button id="DownloadLogFile" type="submit">Download</button>
-                    </div>
-                {% endif %}
+            {% if django_version >= '3' %}
+                <div class="changelist-form-container">{% endif %}
+            {% if file_contents %}
+                <div id="toolbar">
+                    <button id="DownloadLogFile" type="submit">Download</button>
+                </div>
+            {% endif %}
 
-                {% if file_contents %}
+            {% if file_contents %}
+                <form id="changelist-form" method="post" novalidate="">
                     <div class="results">
-                        <table id="result_list">
+                        <table id="result_list"{% if django_version < '3' %} style="width: auto;margin-right: 280px;" {% endif %}>
                             <thead>
                             <tr>
                                 <th scope="col" class="action-checkbox-column">
@@ -56,9 +58,15 @@
                             </tbody>
                         </table>
                     </div>
-                {% endif %}
+                    {% if django_version < '3' %}
+                        <p class="paginator">{{ file_contents|length }} log content</p>
+                    {% endif %}
+                </form>
+            {% endif %}
 
+            {% if django_version >= '3' %}
                 <p class="paginator">{{ file_contents|length }} log content</p>
+            {% endif %}
             {% if django_version >= '3' %}</div>{% endif %}
 
             {% block filters %}
