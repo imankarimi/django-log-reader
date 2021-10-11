@@ -35,9 +35,9 @@
             {% endif %}
 
             {% if file_contents %}
-                <form id="changelist-form" method="post" novalidate="">
+                <form id="changelist-form" method="post" novalidate=""{% if django_version < '3' %} style="width: auto;margin-right: 280px;" {% endif %}>
                     <div class="results">
-                        <table id="result_list"{% if django_version < '3' %} style="width: auto;margin-right: 280px;" {% endif %}>
+                        <table id="result_list">
                             <thead>
                             <tr>
                                 <th scope="col" class="action-checkbox-column">
