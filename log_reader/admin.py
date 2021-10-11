@@ -1,3 +1,4 @@
+import django
 from django.contrib import admin
 from django.template.response import TemplateResponse
 from django.urls import path
@@ -18,13 +19,17 @@ class FileLogReaderAdmin(admin.ModelAdmin):
         ]
 
     def changelist_view(self, request, extra_context=None):
+        filename = request.GET.get('file_name', settings.LOG_READER_DEFAULT_FILE)
+
         is_valid, file_contents = read_file_lines(
-            file_name=request.GET.get('file_name', settings.LOG_READER_DEFAULT_FILE))
+            file_name=filename)
         log_files = get_log_files(settings.LOG_READER_DIR_PATH)
 
         context = dict(
             self.admin_site.each_context(request),
             log_files=log_files,
-            file_contents=file_contents
+            file_contents=file_contents,
+            file_name=filename,
+            django_version=django.get_version()
         )
-        return TemplateResponse(request, "log_reader/admin/index.html", context=context)
+        return TemplateResponse(request, "log_reader/admin/change_list.html", context=context)

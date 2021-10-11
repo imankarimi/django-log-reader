@@ -26,7 +26,7 @@
 {% block content %}
     <div id="content-main">
         <div class="module filtered" id="changelist">
-            <div class="changelist-form-container">
+            {% if django_version >= '3' %}<div class="changelist-form-container">{% endif %}
                 {% if file_contents %}
                     <div id="toolbar">
                         <button id="DownloadLogFile" type="submit">Download</button>
@@ -59,7 +59,7 @@
                 {% endif %}
 
                 <p class="paginator">{{ file_contents|length }} log content</p>
-            </div>
+            {% if django_version >= '3' %}</div>{% endif %}
 
             {% block filters %}
                 {{ block.super }}
@@ -85,7 +85,7 @@
                 file_content += content.textContent;
                 file_content += "\n\n============================================================================\n\n";
             })
-            var filename = "{{ request.GET.file_name|default:'django.log' }}";
+            var filename = "{{ file_name }}";
             download(filename, file_content);
         }, false);
     </script>
