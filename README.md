@@ -1,5 +1,5 @@
 # Django Log Reader
-**Django Log Reader** allows you to read &amp; download log files on the admin page for *Linux* os.
+**Django Log Reader** allows you to read &amp; download log files on the admin page.
 
 :warning: **Warning!!**
 * This version is designed for the Linux operating system and uses Linux commands to read files faster.
