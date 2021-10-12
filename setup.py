@@ -1,4 +1,5 @@
 import os
+
 from setuptools import find_packages, setup
 
 with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
@@ -14,6 +15,7 @@ setup(
     include_package_data=True,
     description='Read & Download log files on the admin page',
     long_description=README,
+    long_description_content_type="text/markdown",
     url='https://github.com/imankarimi/django-log-reader',
     author='Iman Karimi',
     author_email='imankarimi.mail@gmail.com',
@@ -21,11 +23,9 @@ setup(
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
-        'Framework :: Django :: 2.*',
-        'Framework :: Django :: 3.*',
+        'Framework :: Django :: 3.2',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
-        'Operating System :: OS Dependent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',

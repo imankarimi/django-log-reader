@@ -1,8 +1,7 @@
 # Django Log Reader
 **Django Log Reader** allows you to read &amp; download log files on the admin page.
 
-:warning: **Warning!!**
-* This version is designed for the Linux operating system and uses Linux commands to read files faster.
+> This version designed for the Linux operating system and uses Linux commands to read files faster.
 
 <br />
 
@@ -28,9 +27,9 @@
 * Download and install latest version of Django Log Reader:
 
 ```bash
-$ pip install git+https://github.com/imankarimi/django-log-reader.git
-// OR
-$ easy_install git+https://github.com/imankarimi/django-log-reader.git
+$ pip install django-log-reader
+# or
+$ easy_install django-log-reader
 ```
 
 <br />
@@ -39,14 +38,15 @@ $ easy_install git+https://github.com/imankarimi/django-log-reader.git
 
 ```python
 INSTALLED_APPS = (
-    # ...
-    'log_reader.apps.LogReaderConfig',
+# ...
+"log_reader.apps.LogReaderConfig",
 )
 ```
 
 <br />
 
-* You can Add the following value In your `settings.py` file.
+* You can Add the following value In your `settings.py` file:
+
 ```python
 # This value specifies the folder for the files. The default value is 'logs'
 LOG_READER_DIR_PATH = 'logs'
@@ -79,14 +79,14 @@ $ python manage.py collectstatic
 ## Start the app
 
 ```bash
-$ # Set up the database
+# Set up the database
 $ python manage.py makemigrations
 $ python manage.py migrate
-$
-$ # Create the superuser
+
+# Create the superuser
 $ python manage.py createsuperuser
-$
-$ # Start the application (development mode)
+
+# Start the application (development mode)
 $ python manage.py runserver # default port 8000
 ```
 
