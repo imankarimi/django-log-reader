@@ -12,9 +12,6 @@ Setup
 
 * Add ``log_reader`` application to the ``INSTALLED_APPS`` setting of your Django project ``settings.py`` file:
 
-.. note::
-    It should be before ``django.contrib.admin``
-
 .. code-block:: python
 
     INSTALLED_APPS = (
