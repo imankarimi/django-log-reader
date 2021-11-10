@@ -38,6 +38,9 @@ Setup
     # This value indicates the number of lines of content in the file. Set the number of lines you want to read to this value.
     LOG_READER_MAX_READ_LINES = 1000
 
+    # You can exclude files with this value.
+    LOG_READER_EXCLUDE_LINES = []
+
 
 * Collect static if you are in production environment:
 
