@@ -49,11 +49,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for content in file_contents %}
-                                <tr>
-                                    <td>{{ forloop.counter }}</td>
-                                    <td class="file_content">{{ content }}</td>
-                                </tr>
+                            {% for content in file_contents reversed %}
+                                {% if content|length > 5 %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td class="file_content">{{ content }}</td>
+                                    </tr>
+                                {% endif %}
                             {% endfor %}
                             </tbody>
                         </table>

@@ -11,3 +11,5 @@ LOG_READER_SPLIT_PATTERN = getattr(settings, 'LOG_READER_SPLIT_PATTERN', "\\n")
 # The default value is '[(?i)[0-9]{4}-[0-9]{2}-[0-9]{2}\\s(?:[0-9]{2}:){2}[0-9]{2}.+?(?=[0-9]{4}-[0-9]{2}-[0-9]{2}\\s(?:[0-9]{2}:){2}[0-9]{2}|$)'
 LOG_READER_REGEX_SPLIT_PATTERN = '[(?i)[0-9]{4}-[0-9]{2}-[0-9]{2}\\s(?:[0-9]{2}:){2}[0-9]{2}.+?(?=[0-9]{4}-[0-9]{2}-[0-9]{2}\\s(?:[0-9]{2}:){2}[0-9]{2}|$)'
 LOG_READER_MAX_READ_LINES = getattr(settings, 'LOG_READER_MAX_READ_LINES', 1000)
+LOG_READER_EXCLUDE_LINES = getattr(settings, 'LOG_READER_EXCLUDE_LINES', [])
+
