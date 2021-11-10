@@ -30,4 +30,12 @@ def read_file_lines(file_name):
     except Exception as e:
         return False, str(e)
 
-    return True, re.findall(settings.LOG_READER_REGEX_SPLIT_PATTERN, content) if content else []
+    return True, split_file_content(content)
+
+
+def split_file_content(content):
+    res = content.split(settings.LOG_READER_SPLIT_PATTERN) if content else []
+    # if content and len(res) == 1:
+    #     res = re.findall(settings.LOG_READER_REGEX_SPLIT_PATTERN, content) if content else []
+    return res
+

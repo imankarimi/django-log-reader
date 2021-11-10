@@ -32,9 +32,8 @@ Setup
     # This value specifies the default file. If there is no filter, the system reads the default file.
     LOG_READER_DEFAULT_FILE = 'django.log'
 
-    # The contents of the files are separated based on this value. Which is of the regex type.
-    # The default value is '[(?i)[0-9]{4}-[0-9]{2}-[0-9]{2}\\s(?:[0-9]{2}:){2}[0-9]{2}.+?(?=[0-9]{4}-[0-9]{2}-[0-9]{2}\\s(?:[0-9]{2}:){2}[0-9]{2}|$)'
-    LOG_READER_REGEX_SPLIT_PATTERN = '[(?i)[0-9]{4}-[0-9]{2}-[0-9]{2}\\s(?:[0-9]{2}:){2}[0-9]{2}.+?(?=[0-9]{4}-[0-9]{2}-[0-9]{2}\\s(?:[0-9]{2}:){2}[0-9]{2}|$)'
+    # The contents of the files are separated based on this pattern.
+    LOG_READER_SPLIT_PATTERN = "\\n"
 
     # This value indicates the number of lines of content in the file. Set the number of lines you want to read to this value.
     LOG_READER_MAX_READ_LINES = 1000
