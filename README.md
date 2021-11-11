@@ -64,7 +64,7 @@ LOG_READER_SPLIT_PATTERN = "\\n"
 LOG_READER_MAX_READ_LINES = 1000
 
 # You can exclude files with this value.
-LOG_READER_EXCLUDE_LINES = []
+LOG_READER_EXCLUDE_FILES = []
 ```
 
 <br />
