@@ -1,5 +1,5 @@
 import django
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.template.response import TemplateResponse
 from django.urls import path
 
