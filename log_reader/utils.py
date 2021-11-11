@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 import os
 # import re
 import subprocess
+from subprocess import PIPE
 from fnmatch import fnmatch
 from django.utils.translation import ugettext_lazy as _
 
@@ -26,8 +27,8 @@ def read_file_lines(file_name):
         file_path = '%s/%s' % (settings.LOG_READER_DIR_PATH, file_name)
         result = subprocess.run(
             ['tail', '-%s' % settings.LOG_READER_MAX_READ_LINES, file_path],
-            capture_output=True,
-            # text=True,
+            stdout=PIPE,
+            stderr=PIPE,
             encoding="utf8",
         )
         content = repr(result.stdout) if result.stdout else None
