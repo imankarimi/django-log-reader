@@ -24,18 +24,27 @@ def get_log_files(directory):
     return []
 
 
-def read_file_lines(file_name):
+def read_file_lines(file_name, search=None):
     if file_name not in get_log_files(settings.LOG_READER_DIR_PATH):
         return False, _("%s file, not found. Please try again." % file_name)
 
     try:
         file_path = '%s/%s' % (settings.LOG_READER_DIR_PATH, file_name)
-        result = subprocess.run(
-            ['tail', '-%s' % settings.LOG_READER_MAX_READ_LINES, file_path],
-            stdout=PIPE,
-            stderr=PIPE,
-            encoding="utf8",
-        )
+
+        if search:
+            result = subprocess.run(
+                ['grep', '-m %s' % settings.LOG_READER_MAX_READ_LINES, search, file_path],
+                stdout=PIPE,
+                stderr=PIPE,
+                encoding="utf8",
+            )
+        else:
+            result = subprocess.run(
+                ['tail', '-%s' % settings.LOG_READER_MAX_READ_LINES, file_path],
+                stdout=PIPE,
+                stderr=PIPE,
+                encoding="utf8",
+            )
         content = repr(result.stdout) if result.stdout else None
     except Exception as e:
         return False, str(e)

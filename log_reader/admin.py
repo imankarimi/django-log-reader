@@ -20,7 +20,8 @@ class FileLogReaderAdmin(admin.ModelAdmin):
 
     def changelist_view(self, request, extra_context=None):
         filename = request.GET.get('file_name', settings.LOG_READER_DEFAULT_FILE)
-        is_valid, file_contents = read_file_lines(file_name=filename)
+        search = request.GET.get('q', None) or None
+        is_valid, file_contents = read_file_lines(file_name=filename, search=search)
         if not is_valid:
             self.message_user(request, file_contents, level=messages.ERROR)
         log_files = get_log_files(settings.LOG_READER_DIR_PATH)
