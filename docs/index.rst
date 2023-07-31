@@ -11,6 +11,7 @@ Why Django Log Reader?
 =========================
 
 * Reading files based on Linux commands speeds up the display of file content
+* Search in files based on Linux commands
 * Download the result of the content
 * Display all files according to the pattern defined in the ``settings.py``
 * Simple interface

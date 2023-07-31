@@ -29,10 +29,13 @@
             {% if django_version >= '3' %}<div class="changelist-form-container">{% endif %}
 
             <div id="toolbar">
-                <form id="changelist-search" method="get">
+                <form id="changelist-search" action="{{ request.get_full_path }}" method="get">
                     <div><!-- DIV needed for valid HTML -->
                         <label for="searchbar"><img src="{% static "admin/img/search.svg" %}" alt="Search"></label>
                         <input type="text" size="40" name="q" value="{{ request.GET.q }}" id="searchbar" autofocus="">
+                        {% if request.GET.file_name %}
+                            <input type="hidden" name="file_name" value="{{ request.GET.file_name }}">
+                        {% endif %}
                         <input type="submit" value="Search">
                     </div>
                 </form>
