@@ -1,4 +1,9 @@
-from django.utils.translation import ugettext_lazy as _
+import django
+
+if django.get_version() >= '4':
+    from django.utils.translation import gettext_lazy as _
+else:
+    from django.utils.translation import ugettext_lazy as _
 
 
 class FileLogReader(object):

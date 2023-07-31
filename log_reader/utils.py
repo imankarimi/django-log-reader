@@ -1,11 +1,16 @@
 from __future__ import unicode_literals
 
+import django
 import os
 # import re
 import subprocess
-from subprocess import PIPE
 from fnmatch import fnmatch
-from django.utils.translation import ugettext_lazy as _
+from subprocess import PIPE
+
+if django.get_version() >= '4':
+    from django.utils.translation import gettext_lazy as _
+else:
+    from django.utils.translation import ugettext_lazy as _
 
 from log_reader import settings
 
