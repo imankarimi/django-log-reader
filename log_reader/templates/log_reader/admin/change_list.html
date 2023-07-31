@@ -26,20 +26,20 @@
 {% block content %}
     <div id="content-main">
         <div class="module filtered" id="changelist">
-            {% if django_version >= '3' %}
-                <div class="changelist-form-container">{% endif %}
-            {% if file_contents %}
-                <div id="toolbar">
-                    <form id="changelist-search" method="get">
-                        <div><!-- DIV needed for valid HTML -->
-                            <label for="searchbar"><img src="{% static "admin/img/search.svg" %}" alt="Search"></label>
-                            <input type="text" size="40" name="q" value="{{ request.GET.q }}" id="searchbar" autofocus="">
-                            <input type="submit" value="Search">
-                        </div>
-                    </form>
+            {% if django_version >= '3' %}<div class="changelist-form-container">{% endif %}
+
+            <div id="toolbar">
+                <form id="changelist-search" method="get">
+                    <div><!-- DIV needed for valid HTML -->
+                        <label for="searchbar"><img src="{% static "admin/img/search.svg" %}" alt="Search"></label>
+                        <input type="text" size="40" name="q" value="{{ request.GET.q }}" id="searchbar" autofocus="">
+                        <input type="submit" value="Search">
+                    </div>
+                </form>
+                {% if file_contents %}
                     <button id="DownloadLogFile" type="submit">Download</button>
-                </div>
-            {% endif %}
+                {% endif %}
+            </div>
 
             {% if file_contents %}
                 <form id="changelist-form" method="post" novalidate=""{% if django_version < '3' %} style="width: auto;margin-right: 280px;" {% endif %}>
